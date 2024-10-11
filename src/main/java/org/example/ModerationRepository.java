@@ -3,12 +3,13 @@ package org.example;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONObject;
 
 public class ModerationRepository {
 
-    public void saveModerationResult(String userId, ModerationNewResponse response) throws SQLException {
+    public void saveModerationResult(String userId, ModerationNewResponse response) throws SQLException, JsonProcessingException {
         String query = "INSERT INTO moderation_results (user_id, result) VALUES (?, ?::jsonb)";
 
         try (Connection conn = DatabaseConnection.getConnection();
